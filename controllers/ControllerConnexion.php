@@ -25,9 +25,8 @@ class ControllerConnexion
         require_once('models/UtilisateurManager.php');
         $this->_utilisateurManager = new UtilisateurManager();
 
-
         $this->_view = new View('Connexion');
-        $this->_view->generate();
+        $this->_view->generate(array());
 
     }
 

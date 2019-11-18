@@ -1,4 +1,8 @@
-
+<?php
+if (isset($_POST['Connexion'])){
+    $msg = "Envoyer";
+}
+?>
 <head>
     <meta charset="utf-8">
     <title><?= $t?></title>
@@ -11,12 +15,13 @@
     <script src="../js/formConnexion.js"></script>
 </head>
 <body style="background-color: #96188B">
+<?php if (isset($msg)){echo $msg;}?>
 <main style="background-color: #96188B">
     <div id="login" class="row" style="margin-top: 10%">
         <div class="card-panel col s12 offset-m3 m6 offset-l3 l6 z-depth-6" style="padding: 50px;">
             <div class="center row">
                 <h4>Connexion</h4>
-                <form class="login-form" action="<?php echo Router::rootTo('contacts/index/'); ?>" method="post">
+                <form class="login-form" method="post">
                     <div class="row margin">
                         <div class="input-field col s12">
                             <i class="material-icons prefix pt-2">person_outline</i>

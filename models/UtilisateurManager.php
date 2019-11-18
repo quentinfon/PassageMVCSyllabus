@@ -1,5 +1,5 @@
 <?php
-
+require_once('models/Model.php');
 
 class UtilisateurManager extends Model
 {
@@ -31,6 +31,22 @@ class UtilisateurManager extends Model
 
         $var = [];
         $mdp = hash("sha512", $mdp);
+        $req = "SELECT * FROM SYL_UTILISATEUR WHERE UTI_MAIL = '".$mail."' AND UTI_MDP ='".$mdp."'";
+
+        $req = self::getBdd()->prepare($req);
+        $req->execute();
+
+        while($data = $req->fetch(PDO::FETCH_ASSOC)){
+            $var[] = new Utilisateur($data);
+        }
+        $req->closeCursor();
+
+        return $var;
+    }
+
+    public function connexionCookies($mail, $mdp){
+
+        $var = [];
         $req = "SELECT * FROM SYL_UTILISATEUR WHERE UTI_MAIL = '".$mail."' AND UTI_MDP ='".$mdp."'";
 
         $req = self::getBdd()->prepare($req);
