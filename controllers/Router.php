@@ -51,4 +51,21 @@ class Router
         }
     }
 
+    public function rootTo($url){
+        $url = explode("/", $url);
+        $controller = ucfirst(strtolower($url[0]));
+        $controllerClass = "Controller".$controller;
+        $controllerFile = "controllers/".$controllerClass.".php";
+        if(file_exists($controllerFile))
+        {
+            require_once($controllerFile);
+            $this->_ctrl = new $controllerClass($url);
+        }
+        else
+        {
+            throw new Exception('Page introuvable');
+        }
+
+    }
+
 }
