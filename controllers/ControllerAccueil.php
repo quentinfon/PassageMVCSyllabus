@@ -1,4 +1,5 @@
 <?php
+require_once('views/View.php');
 
 class ControllerAccueil
 {
@@ -13,20 +14,20 @@ class ControllerAccueil
         }
         else
         {
-            self::accueil();
+            $this->accueil();
         }
     }
 
     private function accueil(){
-
-
 
         require_once('models/UtilisateurManager.php');
         $this->_utilisateurManager = new UtilisateurManager();
 
         $utilisateurs = $this->_utilisateurManager->getAll();
 
-        require_once('views/viewAccueil.php');
+        $this->_view = new View('Accueil');
+        $this->_view->generate(array('utilisateurs' => $utilisateurs));
+
     }
 
 }
