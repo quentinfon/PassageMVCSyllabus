@@ -3,15 +3,18 @@
 
 abstract class Model
 {
-    private $hote = 'mysql:host=localhost;dbname=syllabus_bd;charset=utf8';
-    private $utilisateur = "syllabus";
-    private $mdpBdd = "bohGhohz2UpohChe";
+
     private static $_bdd;
 
 
     //Instancie la connexion à la bdd
     private static function setBdd(){
-        self::$_bdd = new PDO(self::hote, self::utilisateur,self::mdpBdd);
+
+        $hote = 'mysql:host=localhost;dbname=syllabus_bd;charset=utf8';
+        $utilisateur = "syllabus";
+        $mdpBdd = "bohGhohz2UpohChe";
+
+        self::$_bdd = new PDO( $hote, $utilisateur, $mdpBdd);
         self::$_bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
     }
 

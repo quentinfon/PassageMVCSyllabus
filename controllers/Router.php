@@ -11,7 +11,7 @@ class Router
         try{
             //Chargement automatique des classes
             spl_autoload_register(function($class){
-                requiere_once('models/'.$class.'.php');
+                require_once('models/'.$class.'.php');
             });
 
             $url = '';
@@ -38,16 +38,15 @@ class Router
             }
             else
             {
-                require_once('controllers/ControllerAcceuil.php');
+                require_once('controllers/ControllerAccueil.php');
                 $this->_ctrl = new ControllerAccueil($url);
             }
 
         }
-        //Gestion des erreurs
         catch (Exception $e)
         {
             $errorMsg = $e->getMessage();
-            requiere_once('views/viewError.php');
+            require_once('views/viewError.php');
         }
     }
 

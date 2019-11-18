@@ -27,7 +27,7 @@ class UtilisateurManager extends Model
 
     }
 
-    public function connexion($mail, $mdp, $obj){
+    public function connexion($mail, $mdp){
 
         $var = [];
         $mdp = hash("sha512", $mdp);
@@ -37,7 +37,23 @@ class UtilisateurManager extends Model
         $req->execute();
 
         while($data = $req->fetch(PDO::FETCH_ASSOC)){
-            $var[] = new $obj($data);
+            $var[] = new Utilisateur($data);
+        }
+        $req->closeCursor();
+
+        return $var;
+    }
+
+    public function getAll(){
+
+        $var = [];
+        $req = "SELECT * FROM SYL_UTILISATEUR";
+
+        $req = self::getBdd()->prepare($req);
+        $req->execute();
+
+        while($data = $req->fetch(PDO::FETCH_ASSOC)){
+            $var[] = new Utilisateur($data);
         }
         $req->closeCursor();
 

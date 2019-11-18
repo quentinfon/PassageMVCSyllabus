@@ -5,7 +5,7 @@ class Utilisateur
 {
     //Global
     private $_utiNum;
-    private $utiMail;
+    private $_utiMail;
     private $_utiNom;
     private $_utiPrenom;
     //Ens
@@ -37,5 +37,59 @@ class Utilisateur
             $this->_utiNum = $id;
         }
     }
+
+    public function setUti_mail($id){
+        $this->_utiMail = $id;
+    }
+
+    public function setUti_nom($id){
+        $this->_utiNom = $id;
+    }
+
+    public function setUti_prenom($id){
+        $this->_utiPrenom = $id;
+    }
+
+    public function setEns_num($id){
+        $this->_ensNum = $id;
+    }
+
+    public function setEns_statut($id){
+        $this->_ensStatut = $id;
+    }
+
+    public function getUtiNum()
+    {
+        return $this->_utiNum;
+    }
+
+    public function getUtiMail()
+    {
+        return $this->_utiMail;
+    }
+
+    public function getUtiNom()
+    {
+        return $this->_utiNom;
+    }
+
+    public function getUtiPrenom()
+    {
+        return $this->_utiPrenom;
+    }
+
+    public function getEnsNum()
+    {
+        return $this->_ensNum;
+    }
+
+    public function getEnsStatut()
+    {
+        return $this->_ensStatut;
+    }
+
+
+
+
 
 }
