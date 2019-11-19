@@ -12,6 +12,14 @@ $this->_t = 'Connexion';
     <script type = "text/javascript" src = "https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
     <script src="../js/formConnexion.js"></script>
+    <script>
+
+        function msg() {
+            document.getElementById('messageErr').style.display = 'none';
+        }
+        setTimeout("msg()",2000);
+
+    </script>
 </head>
 <body style="background-color: #96188B">
 
@@ -35,16 +43,13 @@ $this->_t = 'Connexion';
                             <label for="pass">Mot de passe</label>
                         </div>
                     </div>
-                    <div class="center row">
-                        <div class="col s12 m12 l12 ml-2 mt-1">
-                            <p>
-                                <label for="check">
-                                    <input type="checkbox" id="check" name="resterConnecte">
-                                    <span>Se souvenir de moi</span>
-                                </label>
-                            </p>
-                        </div>
+
+                    <div id="messageErr" class="row" id="alert_box">
+
+                        <?php if (isset($messageErr)){echo $messageErr;}?>
+
                     </div>
+
                     <div class="row">
                         <input type="submit" value="Connexion" class="btn btn-large blue">
                     </div>
@@ -52,10 +57,9 @@ $this->_t = 'Connexion';
                         <div id="resultat"></div>
                     </div>
                 </form>
-
             </div>
         </div>
-        <?php if (isset($messageErr)){echo $messageErr;}?>
+
     </div>
 </main>
 </body>

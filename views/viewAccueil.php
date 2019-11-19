@@ -2,4 +2,4 @@
 $this->_t = 'Accueil';
 ?>
 
-<h2>Bienvenue <?php $utilisateurs->getUtiPrenom()." ".$utilisateurs->getUtiNom()?></h2>
+<h2>Bienvenue <?php echo Router::$_utilisateur->getUtiPrenom()." ".Router::$_utilisateur->getUtiNom();?></h2>

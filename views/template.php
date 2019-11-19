@@ -40,7 +40,7 @@
                     <a class="nav-link" href="/syllabus">Consulter les syllabus</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/backend/deconnexion.php" onclick = "javascript:confirm('êtes-vous certain ?')">Déconnexion</a>
+                    <a class="nav-link" href="/deconnexion" onclick = "javascript:confirm('êtes-vous certain ?')">Déconnexion</a>
                 </li>
             </ul>
         </div>

@@ -20,9 +20,16 @@ class ControllerAccueil
 
     private function accueil(){
 
+        if (Router::$_utilisateur->estAdmin()){
 
-        $this->_view = new View('Accueil');
-        $this->_view->generate(array('utilisateurs' => Router::$_utilisateur));
+            $this->_view = new View('Gestion');
+            $this->_view->generate(array());
+
+        }else{
+            $this->_view = new View('Accueil');
+            $this->_view->generate(array());
+        }
+
 
     }
 

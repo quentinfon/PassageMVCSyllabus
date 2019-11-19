@@ -9,7 +9,7 @@ $this->_t = 'Gestion';
     <div id="gestionSyllabus" class="col-md-2 mb-3 mx-auto">
         <ul class="list-group">
             <li class="list-group-item active"><b>Syllabus</b></li>
-            <a href='frontend/affichagesyllabus.php'><li class="list-group-item">Gestion</li></a>
+            <a href='/syllabus'><li class="list-group-item">Gestion</li></a>
             <a href='frontend/formulaire.php'><li class="list-group-item">Créer</li></a>
         </ul>
     </div>
@@ -17,7 +17,7 @@ $this->_t = 'Gestion';
     <div id="gestionPersonnes" class="col-md-2 mb-3 mx-auto">
         <ul class="list-group">
             <li class="list-group-item active"><b>Utilisateurs</b></li>
-            <a href='frontend/affichageUtilisateur.php'><li class="list-group-item">Gestion</li></a>
+            <a href='/utilisateurs'><li class="list-group-item">Gestion</li></a>
             <a href='frontend/creationCompte.php'><li class="list-group-item">Créer</li></a>
         </ul>
     </div>
