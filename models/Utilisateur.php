@@ -8,6 +8,7 @@ class Utilisateur
     private $_utiMail;
     private $_utiNom;
     private $_utiPrenom;
+    private $_utiMdp;
     //Ens
     private $_ensNum;
     private $_ensStatut;
@@ -38,6 +39,10 @@ class Utilisateur
         }
     }
 
+    public function setUti_mdp($mdp){
+        $this->_utiMdp = $mdp;
+    }
+
     public function setUti_mail($id){
         $this->_utiMail = $id;
     }
@@ -61,6 +66,11 @@ class Utilisateur
     public function getUtiNum()
     {
         return $this->_utiNum;
+    }
+
+    public function getUtiMdp()
+    {
+        return $this->_utiMdp;
     }
 
     public function getUtiMail()

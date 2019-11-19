@@ -1,5 +1,6 @@
 <?php
 require_once('views/View.php');
+require_once('models/UtilisateurManager.php');
 
 class Router
 {
@@ -10,6 +11,7 @@ class Router
     public function routeReq(){
 
         if (isset($_COOKIE['UTI_MAIL'], $_COOKIE['UTI_MDP'])){
+
             $this->_ctrl = new UtilisateurManager();
 
             $_utilisateur = $this->_ctrl->connexionCookies( $_COOKIE['UTI_MAIL'], $_COOKIE['UTI_MDP']);
@@ -64,8 +66,12 @@ class Router
 
         }else{
             //Pas connecté
+            $url = '';
+            if(isset($_GET['url'])) {
+                $url = explode('/', filter_var($_GET['url'], FILTER_SANITIZE_URL));
+            }
             require_once('controllers/ControllerConnexion.php');
-            $this->_ctrl = new ControllerConnexion('');
+            $this->_ctrl = new ControllerConnexion($url);
         }
 
 

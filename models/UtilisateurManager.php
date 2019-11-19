@@ -1,5 +1,6 @@
 <?php
 require_once('models/Model.php');
+require_once('models/Utilisateur.php');
 
 class UtilisateurManager extends Model
 {
