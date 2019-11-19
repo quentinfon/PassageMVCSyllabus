@@ -63,8 +63,8 @@ class ControllerConnexion
         }
         else
         {
-            setcookie('UTI_MAIL', $uti->getUtiMail(), time() + 24*3600, null, null, false, true);
-            setcookie('UTI_MDP', $uti->getUtiMdp(), time() + 24*3600, null, null, false, true);
+            setcookie('UTI_MAIL', $uti->getUtiMail(), time() + 24*3600, '/');
+            setcookie('UTI_MDP', $uti->getUtiMdp(), time() + 24*3600, '/');
         }
 
     }
