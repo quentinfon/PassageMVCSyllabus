@@ -65,6 +65,10 @@ class ControllerConnexion
         {
             setcookie('UTI_MAIL', $uti->getUtiMail(), time() + 24*3600, '/');
             setcookie('UTI_MDP', $uti->getUtiMdp(), time() + 24*3600, '/');
+
+            header('location: /');
+            exit();
+
         }
 
     }

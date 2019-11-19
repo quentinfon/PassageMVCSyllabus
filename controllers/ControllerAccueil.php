@@ -20,13 +20,9 @@ class ControllerAccueil
 
     private function accueil(){
 
-        require_once('models/UtilisateurManager.php');
-        $this->_utilisateurManager = new UtilisateurManager();
-
-        $utilisateurs = $this->_utilisateurManager->getAll();
 
         $this->_view = new View('Accueil');
-        $this->_view->generate(array('utilisateurs' => $utilisateurs));
+        $this->_view->generate(array('utilisateurs' => Router::$_utilisateur));
 
     }
 

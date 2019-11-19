@@ -4,7 +4,7 @@ require_once('models/UtilisateurManager.php');
 
 class Router
 {
-    public $_utilisateur;
+    public static $_utilisateur;
     private $_ctrl;
     private $_view;
 
@@ -15,10 +15,10 @@ class Router
 
             $this->_ctrl = new UtilisateurManager();
 
-            $_utilisateur = $this->_ctrl->connexionCookies( $_COOKIE['UTI_MAIL'], $_COOKIE['UTI_MDP']);
+            $uti = $this->_ctrl->connexionCookies( $_COOKIE['UTI_MAIL'], $_COOKIE['UTI_MDP']);
 
-            if (!empty($_utilisateur)){
-                $_utilisateur = $_utilisateur[0];
+            if (!empty($uti)){
+                self::$_utilisateur = $uti[0];
 
                 try{
                     //Chargement automatique des classes
