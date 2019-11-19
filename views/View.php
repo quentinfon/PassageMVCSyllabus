@@ -15,11 +15,16 @@ class View
     //Génére et affiche la vue
     public function generate($data)
     {
+        if ($this->_file == "views/viewConnexion.php"){
+            $view = $this->generateFile( $this->_file, $data);
+        }else{
+
         // Partie spécifique de la vue
         $content = $this->generateFile( $this->_file, $data);
 
         //Header et footer (Template)
         $view = $this->generateFile('views/template.php', array('t' => $this->_t, 'content' => $content));
+        }
 
         echo $view;
     }

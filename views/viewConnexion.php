@@ -1,8 +1,3 @@
-<?php
-if (isset($_POST['Connexion'])){
-    $msg = "Envoyer";
-}
-?>
 <head>
     <meta charset="utf-8">
     <title><?= $t?></title>
