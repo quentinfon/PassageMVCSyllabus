@@ -13,8 +13,12 @@ class ControllerUtilisateurs
 
         if (isset($url) && count($url) > 4) {
             throw new Exception('Page introuvable');
-        }else if(isset($url[1], $_POST['uti_num']) && $url[1] == "consulter"){
+        }
+        else if(isset($url[1], $_POST['uti_num']) && $url[1] == "consulter"){
             $this->consultationUtilisateur($_POST['uti_num']);
+        }
+        else if(isset($url[1], $_POST['uti_num']) && $url[1] == "modifier"){
+            $this->modificationUtilisateur($_POST['uti_num']);
         }
         else{
             $this->listeUtilisateurs();
@@ -47,6 +51,20 @@ class ControllerUtilisateurs
         }
 
         $this->_view->generate(array('utilisateur' => $utilisateur, 'sylEns' => $sylEns));
+
+    }
+
+    private function modificationUtilisateur($id){
+
+        $this->_view = new View('ModifierUtilisateur');
+
+        $this->_utilisateurManager = new UtilisateurManager();
+
+        $utilisateur = $this->_utilisateurManager->getUti($id);
+
+        $promos = EnseignementsManager::getPromos();
+
+        $this->_view->generate(array('utilisateur' => $utilisateur, 'promos' => $promos));
 
     }
 

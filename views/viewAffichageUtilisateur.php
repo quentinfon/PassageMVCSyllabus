@@ -12,12 +12,12 @@ $role = "";
  }
 ?>
 
-<form method="post" action="modificationUtilisateur.php" id="formModifUtil"/>
+<form method="post" action="/utilisateurs/modifier" id="formModifUtil"/>
 
 <table class="table table-dark">
     <thead>
     <tr>
-        <th colspan="2">INFORMATION UTILISATEUR  <button  class="btn btn-primary" type="submit" form="formModifUtil" name="uti_num" value="<?php ?>">Modifier</button></th>
+        <th colspan="2">INFORMATION UTILISATEUR  <button  class="btn btn-primary" type="submit" form="formModifUtil" name="uti_num" value="<?php echo $utilisateur->getUtiNum() ?>">Modifier</button></th>
     </tr>
     </thead>
     <tbody>
