@@ -12,9 +12,22 @@ class ControllerSyllabus
         require_once('models/SyllabusManager.php');
         $this->_syllabusManager = new SyllabusManager();
 
-        if (isset($url) && count($url) > 1) {
+        if (isset($url) && count($url) > 3) {
             throw new Exception('Page introuvable');
-        } else {
+        }
+        else if(isset($url[1]) && $url[1] == "ajouter"){
+            $this->ajouterSyllabus();
+        }
+        else if(isset($url[1], $url[2]) && $url[1] == "consulter"){
+            $this->consulterUnSyllabus();
+        }
+        else if(isset($url[1], $url[2]) && $url[1] == "supprimer"){
+            $this->supprimerUnSyllabus();
+        }
+        else if(isset($url[1], $url[2]) && $url[1] == "modifier"){
+            $this->modifierUnSyllabus();
+        }
+        else {
 
             $this->listSyllabus();
 
@@ -28,6 +41,22 @@ class ControllerSyllabus
         $this->_view = new View('ListeSyllabus');
 
         $this->_view->generate(array('syllabus' => $syllabus));
+
+    }
+
+    private function ajouterSyllabus(){
+
+    }
+
+    private function consulterUnSyllabus($sylNum){
+
+    }
+
+    private function supprimerUnSyllabus($sylNum){
+
+    }
+
+    private function modifierUnSyllabus($sylNum){
 
     }
 

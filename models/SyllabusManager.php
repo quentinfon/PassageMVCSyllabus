@@ -36,5 +36,33 @@ class SyllabusManager extends Model
         return $var;
     }
 
+    public function existe($sylNum){
+
+        $req = "SELECT * FROM SYL_SYLLABUS WHERE SYL_NUM = '".$sylNum."'";
+
+        $req = self::getBdd()->prepare($req);
+        $req->execute();
+
+        while($data = $req->fetch(PDO::FETCH_ASSOC)){
+            $var[] = new Syllabus($data);
+        }
+        $req->closeCursor();
+
+        if (!empty($var)){
+            return true;
+        }else{
+            return false;
+        }
+
+    }
+
+    public function supprimer($sylNum){
+
+        $req="DELETE FROM SYL_SYLLABUS WHERE SYL_NUM = $sylNum";
+        $req = self::getBdd()->prepare($req);
+        $req->execute();
+
+    }
+
 
 }
