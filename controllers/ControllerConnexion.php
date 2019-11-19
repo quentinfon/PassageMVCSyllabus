@@ -36,27 +36,24 @@ class ControllerConnexion
     private function process()
     {
         $this->_view = new View('Connexion');
-        $requiredFields = array('email', 'mdp');
         $error = false;
-        foreach($requiredFields as $_field)
-        {
 
-            if(!isset($_POST[$_field]) || empty($_POST[$_field]))
-            {
+        if(!isset($_POST['email']) || empty($_POST['email']) || !isset($_POST['mdp']) || empty($_POST['mdp']))
+        {
+            $error = true;
+            $messageErr = "Vous devez remplir les champs !";
+        }
+        else
+        {
+            $uti = $this->_utilisateurManager->connexion($_POST['email'], $_POST['mdp']);
+            if (empty($uti)){
                 $error = true;
-                $messageErr = "Vous devez remplir les champs !";
-            }
-            else
-            {
-                $uti = $this->_utilisateurManager->connexion($_POST['email'], $_POST['mdp']);
-                if (empty($uti)){
-                    $error = true;
-                    $messageErr = "Mauvais identifiants !";
-                }else{
-                    $uti = $uti[0];
-                }
+                $messageErr = "Mauvais identifiants !";
+            }else{
+                $uti = $uti[0];
             }
         }
+
         if($error)
         {
             $this->_view->generate(array("messageErr"=>$messageErr));

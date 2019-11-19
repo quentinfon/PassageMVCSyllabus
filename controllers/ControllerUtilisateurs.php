@@ -11,9 +11,12 @@ class ControllerUtilisateurs
     public function __construct($url)
     {
 
-        if (isset($url) && count($url) > 1) {
+        if (isset($url) && count($url) > 4) {
             throw new Exception('Page introuvable');
-        } else {
+        }else if(isset($url[1], $_POST['uti_num']) && $url[1] == "consulter"){
+            $this->consultationUtilisateur($_POST['uti_num']);
+        }
+        else{
             $this->listeUtilisateurs();
         }
     }
@@ -27,6 +30,23 @@ class ControllerUtilisateurs
         $utilisateurs = $this->_utilisateurManager->getAll();
 
         $this->_view->generate(array('utilisateurs' => $utilisateurs));
+
+    }
+
+    private function consultationUtilisateur($id){
+
+        $this->_view = new View('AffichageUtilisateur');
+
+        $this->_utilisateurManager = new UtilisateurManager();
+
+        $utilisateur = $this->_utilisateurManager->getUti($id);
+        $sylEns = array();
+
+        if (UtilisateurManager::estEnseignant($id)){
+            $sylEns = SyllabusManager::getSylEnsCreateur($utilisateur->getEnsNum());
+        }
+
+        $this->_view->generate(array('utilisateur' => $utilisateur, 'sylEns' => $sylEns));
 
     }
 

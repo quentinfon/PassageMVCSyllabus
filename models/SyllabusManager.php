@@ -38,6 +38,7 @@ class SyllabusManager extends Model
 
     public function existe($sylNum){
 
+        $var = [];
         $req = "SELECT * FROM SYL_SYLLABUS WHERE SYL_NUM = '".$sylNum."'";
 
         $req = self::getBdd()->prepare($req);
@@ -62,6 +63,21 @@ class SyllabusManager extends Model
         $req = self::getBdd()->prepare($req);
         $req->execute();
 
+    }
+
+    public static function getSylEnsCreateur($ensNum){
+        $var = [];
+        $req = "SELECT * FROM SYL_SYLLABUS WHERE ENS_NUM = '".$ensNum."'";
+
+        $req = self::getBdd()->prepare($req);
+        $req->execute();
+
+        while($data = $req->fetch(PDO::FETCH_ASSOC)){
+            $var[] = new Syllabus($data);
+        }
+        $req->closeCursor();
+
+        return $var;
     }
 
 

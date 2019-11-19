@@ -2,7 +2,7 @@
 $this->_t = 'Utilisateurs';
 ?>
 
-<form method="post" action="afficherDetailUtilisateur.php" id="formUtilisateur"/>
+<form method="post" action="/utilisateurs/consulter" id="formUtilisateur"/>
 
 <table class="col-md-12 table">
     <tr>
@@ -28,7 +28,7 @@ $this->_t = 'Utilisateurs';
             </td>
 
             <td>
-                <button  class="btn btn-dark" type="submit" form="formUtilisateur" name="uti_num" value="<?php  ?>">Consulter</button>
+                <button  class="btn btn-dark" type="submit" form="formUtilisateur" name="uti_num" value="<?php echo $uti->getUtiNum() ?>">Consulter</button>
             </td>
 
             <td><a class="btn btn-danger" href="">

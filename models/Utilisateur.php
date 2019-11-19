@@ -9,13 +9,49 @@ class Utilisateur
     private $_utiNom;
     private $_utiPrenom;
     private $_utiMdp;
+
     //Ens
     private $_ensNum;
     private $_ensStatut;
+    private $_ensDispo;
+    private $_ensTel;
+
+    //Etu
+    private $_promoCode;
+
+    //Roles
+    private $_ens;
+    private $_admin;
+    private $_etu;
 
 
     public function __construct(array $data){
         $this->hydrate($data);
+
+        if (isset($this->_utiNum)){
+
+            if(UtilisateurManager::estEnseignant($this->_utiNum)){
+                $this->_ens = true;
+                $donnees = UtilisateurManager::infoEns($this->_utiNum);
+                $this->_ensTel = $donnees[0]["ENS_TELEPHONE"];
+                $this->_ensStatut = $donnees[0]["ENS_STATUT"];
+                $this->_ensDispo = $donnees[0]["ENS_DISPONIBILITEE"];
+            }else{
+                $this->_ens = false;
+            }
+
+            $this->_admin = UtilisateurManager::estAdmin($this->_utiNum);
+
+            if(UtilisateurManager::estEtudiant($this->_utiNum)){
+                $this->_etu = true;
+                $donnees = UtilisateurManager::infoEtu($this->_utiNum);
+                $this->_promoCode = $donnees[0]["PRO_CODE"];
+            }else{
+                $this->_etu = false;
+            }
+
+        }
+
     }
 
     //Hydratation
@@ -96,6 +132,31 @@ class Utilisateur
     public function getEnsStatut()
     {
         return $this->_ensStatut;
+    }
+
+    public function estEnseignant(){
+        return $this->_ens;
+    }
+    public function estAdmin(){
+        return $this->_admin;
+    }
+    public function estEtudiant(){
+        return $this->_etu;
+    }
+
+    public function getEnsDispo()
+    {
+        return $this->_ensDispo;
+    }
+
+    public function getPromoCode()
+    {
+        return $this->_promoCode;
+    }
+
+    public function getEnsTel()
+    {
+        return $this->_ensTel;
     }
 
 
