@@ -3,6 +3,8 @@
 
 class Syllabus
 {
+
+    //Syllabus
     private $_sylNum;
     private $_ensNum;
     private $_sylNom;
@@ -14,6 +16,10 @@ class Syllabus
     private $_sylObjectifs;
     private $_sylRemarque;
 
+
+    //Auteur du syllabus
+    private $_autNom;
+    private $_autPrenom;
 
     public function __construct(array $data){
         $this->hydrate($data);
@@ -31,6 +37,14 @@ class Syllabus
             }
 
         }
+    }
+
+    public function setUti_nom($id){
+        $this->_autNom = $id;
+    }
+
+    public function setUti_prenom($id){
+        $this->_autPrenom = $id;
     }
 
     public function setSyl_num($id){
@@ -133,6 +147,16 @@ class Syllabus
     public function getSylRemarque()
     {
         return $this->_sylRemarque;
+    }
+
+    public function getAutNom()
+    {
+        return $this->_autNom;
+    }
+
+    public function getAutPrenom()
+    {
+        return $this->_autPrenom;
     }
 
 
