@@ -18,8 +18,8 @@ class ControllerSyllabus
         else if(isset($url[1]) && $url[1] == "ajouter"){
             $this->ajouterSyllabus();
         }
-        else if(isset($url[1], $url[2]) && $url[1] == "consulter"){
-            $this->consulterUnSyllabus();
+        else if(isset($url[1], $_POST['NUM_SYL']) && $url[1] == "consulter"){
+            $this->consulterUnSyllabus($_POST['NUM_SYL']);
         }
         else if(isset($url[1], $url[2]) && $url[1] == "supprimer"){
             $this->supprimerUnSyllabus();
