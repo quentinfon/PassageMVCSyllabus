@@ -14,6 +14,11 @@ class ControllerUtilisateurs
         if (isset($url) && count($url) > 4) {
             throw new Exception('Page introuvable');
         }
+        else if(isset($url[1], $_POST['uti_num'], $_POST['modifier']) && $url[1] == "consulter"){
+
+            $this->enregistrementUtilisateur($_POST['uti_num']);
+
+        }
         else if(isset($url[1], $_POST['uti_num']) && $url[1] == "consulter"){
             $this->consultationUtilisateur($_POST['uti_num']);
         }
@@ -65,6 +70,11 @@ class ControllerUtilisateurs
         $promos = EnseignementsManager::getPromos();
 
         $this->_view->generate(array('utilisateur' => $utilisateur, 'promos' => $promos));
+
+    }
+
+    private function enregistrementUtilisateur($id){
+
 
     }
 

@@ -2,8 +2,9 @@
 $this->_t = 'Modification';
 ?>
 
-<form method="post" action="../backend/traitementModifUtilisateur.php" />
+<form method="post" action="/utilisateurs/consulter">
 <input type="hidden" name="uti_num" value="<?php echo $utilisateur->getUtiNum();?>">
+
 
 <table class="table table-dark">
     <thead>
@@ -16,7 +17,7 @@ $this->_t = 'Modification';
         <td>Nom / Prénom</td>
         <td>
             <input type="text" name="nom_utilisateur" value="<?php echo  $utilisateur->getUtiNom(); ?>">
-            <input type="text" name="prenom_utilisateur" value="<?php echo  $utilisateur->getUtiNom(); ?>">
+            <input type="text" name="prenom_utilisateur" value="<?php echo  $utilisateur->getUtiPrenom(); ?>">
             </td>
     </tr>
     <tr>
@@ -111,7 +112,7 @@ $this->_t = 'Modification';
 <a class="btn btn-primary" href="javascript:history.back()">
     Retour
 </a>
-<button  class="btn btn-danger" type="submit">Modifier</button>
+<input type="submit" name="modifier" value="modifier" class="btn btn-danger" >Modifier</input>
 
 
 

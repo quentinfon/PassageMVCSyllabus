@@ -135,4 +135,29 @@ class UtilisateurManager extends Model
 
     }
 
+
+
+    public function miseAJour($data){
+
+        if(isset($data['uti_num'], $data['utiNom'], $data['utiPrenom'], $data['utiMail'])){
+
+            $req="UPDATE SYL_UTILISATEUR SET UTI_MAIL = '".$data['utiMail']."', UTI_NOM = '".$data['utiNom']."' , UTI_PRENOM = '".$data['utiPrenom']."' WHERE UTI_NUM = '".$data['uti_num']."'";
+            $req = self::getBdd()->prepare($req);
+            $req->execute();
+
+            if (isset($data['ensTel'])){
+
+            }
+            if (isset($data['etuPromo'])){
+
+            }
+
+
+
+        }
+
+    }
+
+
+
 }
