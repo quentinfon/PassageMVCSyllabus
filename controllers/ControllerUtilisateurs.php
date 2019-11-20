@@ -36,7 +36,7 @@ class ControllerUtilisateurs
 
         $this->_utilisateurManager = new UtilisateurManager();
 
-        $utilisateurs = $this->_utilisateurManager->getAll();
+        $utilisateurs = $this->_utilisateurManager->getAllUtilisateurs();
 
         $this->_view->generate(array('utilisateurs' => $utilisateurs));
 
@@ -61,8 +61,6 @@ class ControllerUtilisateurs
 
     private function modificationUtilisateur($id){
 
-        var_dump($_POST);
-
         $this->_view = new View('ModifierUtilisateur');
 
         $this->_utilisateurManager = new UtilisateurManager();
@@ -77,6 +75,35 @@ class ControllerUtilisateurs
 
     private function enregistrementUtilisateur($id){
 
+        $uti = UtilisateurManager::getUti($id);
+
+        if (isset($_POST['nom_utilisateur'])){
+            $uti->setUti_nom($_POST['nom_utilisateur']);
+        }if (isset($_POST['prenom_utilisateur'])){
+            $uti->setUti_prenom($_POST['prenom_utilisateur']);
+        }if (isset($_POST['mail'])){
+            $mail = preg_replace("#( )+#", "", $_POST['mail']);
+            $uti->setUti_mail($mail);
+        }if (isset($_POST['telephone'])){
+            $uti->setEns_tel($_POST['telephone']);
+        }if (isset($_POST['pro_code'])){
+            $uti->setPro_code($_POST['pro_code']);
+        }if (isset($_POST['role'])){
+            foreach ($_POST['role'] as $role){
+                if ($role == "enseignant"){
+                    $uti->devientEns();
+                }if ($role == "eleve"){
+                    $uti->devientEtu();
+                }if ($role == "admin"){
+                    $uti->devientAdmin();
+                }
+            }
+        }
+
+        UtilisateurManager::miseAJour($uti);
+
+        header('location: /utilisateurs');
+        exit();
 
     }
 

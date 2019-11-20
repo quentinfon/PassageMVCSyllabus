@@ -142,7 +142,6 @@ class UtilisateurManager extends Model
 
             $utiAvant = UtilisateurManager::getUti($utiMaj->getUtiNum());
 
-            $utiMaj = new Utilisateur();
 
             $req="UPDATE SYL_UTILISATEUR SET UTI_MAIL = '".$utiMaj->getUtiMail()."', UTI_NOM = '".$utiMaj->getUtiNom()."' , UTI_PRENOM = '".$utiMaj->getUtiPrenom()."' WHERE UTI_NUM = '".$utiMaj->getUtiNum()."'";
             $req = self::getBdd()->prepare($req);

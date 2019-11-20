@@ -159,7 +159,23 @@ class Utilisateur
         return $this->_ensTel;
     }
 
+    public function setEns_tel($tel){
+        $this->_ensTel = $tel;
+    }
 
+    public function setPro_code($c){
+        $this->_promoCode = $c;
+    }
+
+    public function devientEns(){
+        $this->_ens = true;
+    }
+    public function devientEtu(){
+        $this->_etu = true;
+    }
+    public function devientAdmin(){
+        $this->_admin = true;
+    }
 
 
 
