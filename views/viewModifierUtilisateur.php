@@ -112,7 +112,7 @@ $this->_t = 'Modification';
 <a class="btn btn-primary" href="javascript:history.back()">
     Retour
 </a>
-<input type="submit" name="modifier" value="modifier" class="btn btn-danger" >Modifier</input>
+<input type="submit" name="modifier" value="Modifier" class="btn btn-danger" >
 
 
 
