@@ -33,7 +33,12 @@ class SyllabusManager extends Model
         }
         $req->closeCursor();
 
-        return $var;
+        if(!empty($var)){
+            return $var[0];
+        }else{
+            return $var;
+        }
+
     }
 
     public function existe($sylNum){

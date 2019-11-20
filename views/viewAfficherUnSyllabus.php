@@ -1,19 +1,31 @@
- <?php
-    $syllabus = new Syllabus();
- ?>
+
  <div style="margin-left: auto; margin-right: auto;">
             <div>
                 <h1><?php echo $syllabus->getSylNom();?></h1>
             </div>
             <div>
-                Rédigé par : <?php $syllabus->getNomComplet();
+                Rédigé par : <?php echo $syllabus->getNomComplet();
                 ?>
             </div>
             <div>
                 <div>
                     EC : <?php
 
-                    $syllabus->getEC();
+                   echo $syllabus->getEC();
+
+                    ?>
+                </div>
+                <div>
+                    UE : <?php
+
+                    echo $syllabus->getUE();
+
+                    ?>
+                </div>
+                <div>
+                    Promo : <?php
+
+                    echo $syllabus->getPromo();
 
                     ?>
                 </div>
@@ -23,17 +35,17 @@
             </div>
             <div>
                 Description : <?php
-                $syllabus->getSylDesc();
+                echo $syllabus->getSylDesc();
                 ?>
             </div>
             <div>
                 Plan du cours : <?php
-                $syllabus->getSylPlanCours();
+                echo $syllabus->getSylPlanCours();
                 ?>
             </div>
             <div>
                 Langue parlée pendant le cours : <?php
-                $syllabus->getSylLanque();
+                echo $syllabus->getSylLanque();
                 ?>
             </div>
             <div>
@@ -41,12 +53,12 @@
             </div>
             <div>
                 Contenu du cours : <?php
-                $syllabus->getSylContenu();
+                echo $syllabus->getSylContenu();
                 ?>
             </div>
             <div>
                 Objectifs : <?php
-                $syllabus->getSylObjectifs();
+                echo $syllabus->getSylObjectifs();
                 ?>
             </div>
 
@@ -56,7 +68,7 @@
                 ?>
                 <div>
                     Remarques au responsable pédagogique : <?php
-                    $syllabus->getSylRemarque();
+                    echo $syllabus->getSylRemarque();
                     ?>
                 </div>
                 <?php
@@ -66,7 +78,7 @@
             <br><br>
             <div>
 
-                <a class="btn btn-primary" href="../frontend/affichagesyllabus.php">
+                <a class="btn btn-primary" href="/syllabus">
                     Retour
                 </a>
 
