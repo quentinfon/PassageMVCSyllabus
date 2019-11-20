@@ -61,6 +61,8 @@ class ControllerUtilisateurs
 
     private function modificationUtilisateur($id){
 
+        var_dump($_POST);
+
         $this->_view = new View('ModifierUtilisateur');
 
         $this->_utilisateurManager = new UtilisateurManager();
