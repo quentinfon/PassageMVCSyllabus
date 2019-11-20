@@ -45,12 +45,10 @@ class ControllerSyllabus
     }
 
     private function ajouterSyllabus(){
-
         $listeEnseignants = UtilisateurManager::getAllEnseignants();
-
+        $listeEC = UtilisateurManager::getAllEC();
         $this->_view = new View('FormulaireSyllabusAdmin');
-
-        $this->_view->generate(array('listeEnseignants'=>$listeEnseignants));
+        $this->_view->generate(array('listeEnseignants'=>$listeEnseignants,'listeEC'=>$listeEC));
     }
 
     private function consulterUnSyllabus($sylNum){

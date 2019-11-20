@@ -223,6 +223,18 @@ class UtilisateurManager extends Model
 
     }
 
+    public static function getAllEC(){
+        $req = "SELECT * FROM SYL_EC";
+
+        $req = self::getBdd()->prepare($req);
+        $req->execute();
+
+        $var=$req->fetchAll();
+
+        return $var;
+
+    }
+
 
 
 

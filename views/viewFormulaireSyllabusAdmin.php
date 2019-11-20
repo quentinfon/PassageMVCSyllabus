@@ -1,6 +1,3 @@
-
-<body>
-
 <form action="../backend/traitementCreerPreSyllabus.php" method="post" class="col-sm-10"><br/>
 
     <h1>Pré-création syllabus</h1>
@@ -41,15 +38,11 @@
         <select class="custom-select custom-select-lg mb-3" id="promoSyl" name="moduleSyl" >
             <option value=''>Sélectionnez un module</option><br/>
             <?php
-            require_once('../backend/bddSyllabus.php');
-            $reqCodePromo = "SELECT * FROM SYL_EC";
-            $bdd = new bddSyllabus();
-            $res = $bdd->exec($reqCodePromo);
 
-            for($i = 0; $i<sizeof($res); $i++ ){
-                $promo = $res[$i]["PRO_CODE"];
-                $uecode = $res[$i]["UE_CODE"];
-                $eccode = $res[$i]["EC_CODE"];
+            for($i = 0; $i<sizeof($listeEC); $i++ ){
+                $promo = $listeEC[$i]["PRO_CODE"];
+                $uecode = $listeEC[$i]["UE_CODE"];
+                $eccode = $listeEC[$i]["EC_CODE"];
 
                 echo "<option value='".$promo."+*+".$uecode."+*+".$eccode."'>".$promo." ".$uecode." ".$eccode."</option><br/>";
             }
@@ -64,12 +57,5 @@
         <i class="fa fa-times-circle" aria-hidden="true"></i>
     </button>
 
-
-
-
-
-
-
 </form>
 
-</body>
