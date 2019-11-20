@@ -137,39 +137,73 @@ class UtilisateurManager extends Model
 
 
 
-    public static function miseAJour($data){
+    public static function miseAJour($utiMaj){
 
-        if(isset($data['uti_num'], $data['utiNom'], $data['utiPrenom'], $data['utiMail'], $data["role"])){
 
-            $uti = UtilisateurManager::getUti($data['uti_num']);
+            $utiAvant = UtilisateurManager::getUti($utiMaj->getUtiNum());
 
-            $req="UPDATE SYL_UTILISATEUR SET UTI_MAIL = '".$data['utiMail']."', UTI_NOM = '".$data['utiNom']."' , UTI_PRENOM = '".$data['utiPrenom']."' WHERE UTI_NUM = '".$data['uti_num']."'";
+            $utiMaj = new Utilisateur();
+
+            $req="UPDATE SYL_UTILISATEUR SET UTI_MAIL = '".$utiMaj->getUtiMail()."', UTI_NOM = '".$utiMaj->getUtiNom()."' , UTI_PRENOM = '".$utiMaj->getUtiPrenom()."' WHERE UTI_NUM = '".$utiMaj->getUtiNum()."'";
             $req = self::getBdd()->prepare($req);
             $req->execute();
 
-            //Futur roles
-            $eleve =false;
-            $enseignant = false;
-            $admin = false;
-            for($i=0; $i<sizeof($data["role"]);$i++){
-                if($data["role"][$i] == "eleve"){
-                    $eleve = true;
-                }elseif($data["role"][$i] == "enseignant"){
-                    $enseignant = true;
-                }else if($data["role"][$i] == "admin"){
-                    $admin = true;
+
+            //Modification Admin
+            if ($utiAvant->estAdmin() && !$utiMaj->estAdmin()){
+                $reqAdmin="DELETE FROM SYL_ADMIN where UTI_NUM = '".$utiMaj->getUtiNum()."'";
+            }else if (!$utiAvant->estAdmin() && $utiMaj->estAdmin()){
+                $reqAdmin="INSERT INTO SYL_ADMIN(UTI_NUM) VALUES ('".$utiMaj->getUtiNum()."')";
+            }
+            if (isset($reqAdmin)){
+                $reqAdmin = self::getBdd()->prepare($reqAdmin);
+                $reqAdmin->execute();
+            }
+
+            //Modification Etudiant
+            if ($utiAvant->estEtudiant() && !$utiMaj->estEtudiant()){
+                $reqEleve = "DELETE FROM SYL_ETUDIANTS WHERE UTI_NUM = '".$utiMaj->getUtiNum()."'";
+            }else if(!$utiAvant->estEtudiant() && $utiMaj->estEtudiant()){
+                $reqEleve = "INSERT INTO SYL_ETUDIANTS (UTI_NUM,PRO_CODE) VALUES ('".$utiMaj->getUtiNum()."','".$utiMaj->getPromoCode()."')";
+            }else if($utiAvant->estEtudiant() && $utiMaj->estEtudiant()){
+                $reqEleve = "UPDATE SYL_ETUDIANTS SET PRO_CODE = '".$utiMaj->getPromoCode()."' WHERE UTI_NUM = '".$utiMaj->getUtiNum()."'";
+            }
+            if (isset($reqEleve)){
+                $reqEleve = self::getBdd()->prepare($reqEleve);
+                $reqEleve->execute();
+            }
+
+            //Modification Enseignant
+            if($utiAvant->estEnseignant() && !$utiMaj->estEnseignant()){
+
+                $reqDejaSyl = "select * from SYL_SYLLABUS where ENS_NUM = '".$utiAvant->getEnsNum()."'";
+                $reqDejaSyl = self::getBdd()->prepare($reqDejaSyl);
+                $reqDejaSyl->execute();
+
+                if (!empty($reqDejaSyl->fetchAll())){
+
+                    $reqEnseignant = "DELETE FROM SYL_ENSEIGNER WHERE ENS_NUM = '".$utiAvant->getEnsNum()."'";
+                    $reqEnseignant = self::getBdd()->prepare($reqEnseignant);
+                    $reqEnseignant->execute();
+
+                    $reqEnseignant= "DELETE FROM SYL_ENSEIGNANTS WHERE UTI_NUM = '".$utiMaj->getUtiNum()."'";
+
                 }
-            }
-
-            if (isset($data['ensTel'])){
 
             }
-            if (isset($data['etuPromo'])){
+            else if($utiAvant->estEnseignant() && $utiMaj->estEnseignant()){
+
+                $reqEnseignant="UPDATE SYL_ENSEIGNANTS SET ENS_TELEPHONE = '".$utiMaj->getEnsTel()."' WHERE UTI_NUM= '".$utiMaj->getUtiNum()."'";
 
             }
+            else if(!$utiAvant->estEnseignant() && $utiMaj->estEnseignant()){
+                $reqEnseignant="INSERT INTO SYL_ENSEIGNANTS (UTI_NUM, ENS_TELEPHONE, ENS_STATUT, ENS_DISPONIBILITEE) VALUES ('".$utiMaj->getUtiNum()."', '".$utiMaj->getEnsTel()."', NULL, NULL)";
+            }
+            if (isset($reqEnseignant)){
+                $reqEnseignant = self::getBdd()->prepare($reqEnseignant);
+                $reqEnseignant->execute();
+            }
 
-
-        }
 
     }
 
