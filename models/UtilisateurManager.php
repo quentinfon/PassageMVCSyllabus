@@ -38,7 +38,7 @@ class UtilisateurManager extends Model
         return $var;
     }
 
-    public function getAll(){
+    public function getAllUtilisateurs(){
 
         $var = [];
         $req = "SELECT * FROM SYL_UTILISATEUR";
@@ -206,6 +206,23 @@ class UtilisateurManager extends Model
 
 
     }
+
+    public static function getAllEnseignants(){
+        $var = [];
+        $req = "SELECT * FROM SYL_UTILISATEUR join SYL_ENSEIGNANTS USING(UTI_NUM) ORDER BY UTI_NOM";
+
+        $req = self::getBdd()->prepare($req);
+        $req->execute();
+
+        while($data = $req->fetch(PDO::FETCH_ASSOC)){
+            $var[] = new Utilisateur($data);
+        }
+        $req->closeCursor();
+
+        return $var;
+
+    }
+
 
 
 

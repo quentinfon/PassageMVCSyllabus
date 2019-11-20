@@ -41,6 +41,7 @@ class SyllabusManager extends Model
 
     }
 
+
     public function existe($sylNum){
 
         $var = [];
