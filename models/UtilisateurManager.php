@@ -54,7 +54,7 @@ class UtilisateurManager extends Model
         return $var;
     }
 
-    public function getUti($id){
+    public static function getUti($id){
 
         $var = [];
         $req = "SELECT * FROM SYL_UTILISATEUR WHERE UTI_NUM = '".$id."'";
@@ -137,13 +137,29 @@ class UtilisateurManager extends Model
 
 
 
-    public function miseAJour($data){
+    public static function miseAJour($data){
 
-        if(isset($data['uti_num'], $data['utiNom'], $data['utiPrenom'], $data['utiMail'])){
+        if(isset($data['uti_num'], $data['utiNom'], $data['utiPrenom'], $data['utiMail'], $data["role"])){
+
+            $uti = UtilisateurManager::getUti($data['uti_num']);
 
             $req="UPDATE SYL_UTILISATEUR SET UTI_MAIL = '".$data['utiMail']."', UTI_NOM = '".$data['utiNom']."' , UTI_PRENOM = '".$data['utiPrenom']."' WHERE UTI_NUM = '".$data['uti_num']."'";
             $req = self::getBdd()->prepare($req);
             $req->execute();
+
+            //Futur roles
+            $eleve =false;
+            $enseignant = false;
+            $admin = false;
+            for($i=0; $i<sizeof($data["role"]);$i++){
+                if($data["role"][$i] == "eleve"){
+                    $eleve = true;
+                }elseif($data["role"][$i] == "enseignant"){
+                    $enseignant = true;
+                }else if($data["role"][$i] == "admin"){
+                    $admin = true;
+                }
+            }
 
             if (isset($data['ensTel'])){
 
@@ -151,7 +167,6 @@ class UtilisateurManager extends Model
             if (isset($data['etuPromo'])){
 
             }
-
 
 
         }
