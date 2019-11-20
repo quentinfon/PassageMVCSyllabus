@@ -5,7 +5,7 @@ $this->_t = "Syllabus";
 <body>
 <div class="affichage">
 
-    <form method="post" action="afficherUnSyllabus.php" id="formSyl"/>
+    <form method="post" action="viewAfficherUnSyllabus.php" id="formSyl"/>
 
     <table class="col-md-12 table">
         <tr>

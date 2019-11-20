@@ -21,6 +21,11 @@ class Syllabus
     private $_autNom;
     private $_autPrenom;
 
+    //Formation du syllabus
+    private $_sylEC;
+    private $_sylUE;
+    private $_sylPromo;
+
     public function __construct(array $data){
         $this->hydrate($data);
     }
@@ -93,6 +98,19 @@ class Syllabus
         $this->_sylRemarque = $data;
     }
 
+    public function setEc_code($data){
+        $this->_sylEC = $data;
+    }
+
+    public function setUe_code($data){
+        $this->_sylUE = $data;
+    }
+
+    public function setPromo_code($data){
+        $this->_sylPromo = $data;
+    }
+
+
     public function getSylNum()
     {
         return $this->_sylNum;
@@ -158,6 +176,23 @@ class Syllabus
     {
         return $this->_autPrenom;
     }
+
+    public function getNomComplet(){
+        return $this->_autNom." ".$this->_autPrenom;
+    }
+
+    public function getUE(){
+        return $this->_sylUE;
+    }
+
+    public function getEC(){
+        return $this->_sylEC;
+    }
+
+    public function getPromo(){
+        return $this->_sylPromo;
+    }
+
 
 
 }

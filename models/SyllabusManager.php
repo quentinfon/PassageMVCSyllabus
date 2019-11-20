@@ -23,7 +23,7 @@ class SyllabusManager extends Model
 
     public function getSyllabus($sylNum){
         $var = [];
-        $req = "SELECT * FROM SYL_SYLLABUS JOIN SYL_ENSEIGNANTS USING (ENS_NUM) JOIN SYL_UTILISATEUR USING (UTI_NUM) WHERE SYL_NUM = '".$sylNum."'";
+        $req = "SELECT * FROM SYL_SYLLABUS JOIN SYL_ASSOCIER USING(SYL_NUM) JOIN SYL_ENSEIGNANTS USING (ENS_NUM) JOIN SYL_UTILISATEUR USING (UTI_NUM) WHERE SYL_NUM = '".$sylNum."'";
 
         $req = self::getBdd()->prepare($req);
         $req->execute();

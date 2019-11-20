@@ -49,6 +49,9 @@ class ControllerSyllabus
     }
 
     private function consulterUnSyllabus($sylNum){
+        $syllabus = $this->_syllabusManager->getSyllabus($sylNum);
+        $this->_view = new View('AfficherUnSyllabus');
+        $this->_view->generate(array('syllabus'=>$syllabus));
 
     }
 
