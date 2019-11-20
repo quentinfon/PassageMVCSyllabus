@@ -75,12 +75,29 @@ class ControllerUtilisateurs
 
     private function enregistrementUtilisateur($id){
 
+        require_once('models/TestNom.php');
+        $err = false;
+
         $uti = UtilisateurManager::getUti($id);
 
         if (isset($_POST['nom_utilisateur'])){
-            $uti->setUti_nom($_POST['nom_utilisateur']);
+
+            $nom = $_POST['nom_utilisateur'];
+            if(VerificationNom($nom)){
+                $uti->setUti_nom($nom);
+            }else{
+                $err = true;
+            }
+
         }if (isset($_POST['prenom_utilisateur'])){
-            $uti->setUti_prenom($_POST['prenom_utilisateur']);
+
+            $prenom = $_POST['prenom_utilisateur'];
+            if(VerificationPrenom($prenom)){
+                $uti->setUti_prenom($prenom);
+            }else{
+                $err = true;
+            }
+
         }if (isset($_POST['mail'])){
             $mail = preg_replace("#( )+#", "", $_POST['mail']);
             $uti->setUti_mail($mail);
@@ -100,10 +117,14 @@ class ControllerUtilisateurs
             }
         }
 
-        UtilisateurManager::miseAJour($uti);
+        if (!$err){
+            UtilisateurManager::miseAJour($uti);
 
-        header('location: /utilisateurs');
-        exit();
+            header('location: /utilisateurs');
+            exit();
+        }else{
+            //Gestion des err
+        }
 
     }
 
