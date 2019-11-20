@@ -106,7 +106,7 @@ class Syllabus
         $this->_sylUE = $data;
     }
 
-    public function setPromo_code($data){
+    public function setPro_code($data){
         $this->_sylPromo = $data;
     }
 
