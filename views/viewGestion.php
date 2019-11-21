@@ -4,32 +4,38 @@ $this->_t = 'Gestion';
 
 <body>
 <br><br>
-<div id="panel" class="row">
 
-    <div id="gestionSyllabus" class="col-md-2 mb-3 mx-auto">
-        <ul class="list-group">
-            <li class="list-group-item active"><b>Syllabus</b></li>
-            <a href='/syllabus'><li class="list-group-item">Gestion</li></a>
-            <a href='frontend/formulaire.php'><li class="list-group-item">Créer</li></a>
-        </ul>
+
+<div class="row justify-content-center col-12 pt-4 mx-0 px-0 h-25 ">
+    <div class="col-sm-7 col-md-6 col-lg-3 mb-sm-4">
+        <div class="card text-white bg-primary" style="height: 275px;">
+            <div class="card-header text-center"><h3>Syllabus</h3></div>
+            <div class="card-body text-center">
+                <a class="btn btn-light" href="/syllabus" style="width:50%;">Gestion</a><br><br>
+                <a href="" class="btn btn-light" style="width:50%;">Créer</a>
+            </div>
+        </div>
     </div>
-
-    <div id="gestionPersonnes" class="col-md-2 mb-3 mx-auto">
-        <ul class="list-group">
-            <li class="list-group-item active"><b>Utilisateurs</b></li>
-            <a href='/utilisateurs'><li class="list-group-item">Gestion</li></a>
-            <a href='frontend/creationCompte.php'><li class="list-group-item">Créer</li></a>
-        </ul>
+    <div class="col-sm-7 col-md-6 col-lg-3 mb-sm-4 ">
+        <div class="card text-white bg-danger" style="height: 275px;">
+            <div class="card-header text-center"><h3>Utilisateurs</h3></div>
+            <div class="card-body text-center">
+                <a class="btn btn-light" href="/utilisateurs" style="width:50%;">Gestion</a><br><br>
+                <a href="" class="btn btn-light" style="width:50%;">Créer</a>
+            </div>
+        </div>
     </div>
-
-    <div id="gestionAppliWeb" class="col-md-2 mb-3 mx-auto">
-        <ul class="list-group">
-            <li class="list-group-item active"><b>Autre</b></li>
-            <a href='frontend/creationUE.php'><li class="list-group-item">Gestion des UE</li></a>
-            <a href='frontend/creationModule.php'><li class="list-group-item">Gestion des Modules</li></a>
-        </ul>
+    <div class="col-sm-7 col-md-6 col-lg-3 mb-sm-4">
+        <div class="card text-white bg-secondary" style="height: 275px;">
+            <div class="card-header text-center"><h3>Autre</h3></div>
+            <div class="card-body text-center">
+                <a href="" class="btn btn-light" style="width:50%;">Gestion des UE</a><br><br>
+                <a href="" class="btn btn-light" style="width:50%;">Gestion des Modules</a>
+            </div>
+        </div>
     </div>
-
-
 </div>
+
+
+
 </body>
