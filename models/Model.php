@@ -10,9 +10,9 @@ abstract class Model
     //Instancie la connexion à la bdd
     private static function setBdd(){
 
-        $hote = 'mysql:host=localhost;dbname=syllabus_bd;charset=utf8';
-        $utilisateur = "syllabus";
-        $mdpBdd = "bohGhohz2UpohChe";
+        $hote = '';
+        $utilisateur = "";
+        $mdpBdd = "";
 
         self::$_bdd = new PDO( $hote, $utilisateur, $mdpBdd);
         self::$_bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
